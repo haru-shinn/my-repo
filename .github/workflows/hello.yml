@@ -1,0 +1,8 @@
+name: Hell
+on: push
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo "hello, world"
+      - uses: actions/checkout@v4
