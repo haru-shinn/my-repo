@@ -27,5 +27,7 @@ jobs:
             - run: echo "GitHub job:$GITHUB_JOB"
             # 中間環境変数
             - run: echo "The actor is $ACTOR" # 環境変数経由でコンテキストのプロパティを参照
+            - run: echo "The actor is ${{ github.actor }}"
+            - run: echo "The actor is "${ACTOR}""
 
 
