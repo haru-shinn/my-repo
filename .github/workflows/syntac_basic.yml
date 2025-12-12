@@ -1,0 +1,31 @@
+name: Contexts
+on: push
+jobs:
+    print:
+        runs-on: ubuntu-latest
+        env:
+            BRANCH: main # ジョブレベルの環境変数を定義
+            ACTOR: ${{ github.actor }} # コンテキストの値を環境変数へセット
+        steps:
+            # コンテキストの例
+            - run: echo "コンテキストの例"
+            - run: echo "${{ github.actor }}"
+            - run: echo "${{ github.event_name }}"
+            - run: echo "${{ github.event.head_commit.message }}"
+            - run: echo "${{ runner.os }}"
+            # 環境変数の例
+            - run: echo "環境変数の例"
+            - run: echo "${BRANCH}"
+            - run: echo "${{ env.BRANCH }}"
+            # ジョブレベルの環境変数の例
+            - run: echo "環境変数を参照する例"
+            - uses: actions/checkout@v4
+              with:
+                ref: ${{ env.BRANCH }}
+            # デフォルト環境変数
+            - run: echo "${GITHUB_ACTION}"
+            - run: echo "${GITHUB_JOB}"
+            # 中間環境変数
+            - run: echo "The actor is "${ACTOR}" # 環境変数経由でコンテキストのプロパティを参照
+
+
