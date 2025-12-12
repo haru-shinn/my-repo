@@ -15,7 +15,7 @@ jobs:
             - run: echo "${{ runner.os }}"
             # 環境変数の例
             - run: echo "環境変数の例"
-            - run: echo "${BRANCH}"
+            - run: echo "ブランチ名:$BRANCH"
             - run: echo "${{ env.BRANCH }}"
             # ジョブレベルの環境変数の例
             - run: echo "環境変数を参照する例"
@@ -23,9 +23,9 @@ jobs:
               with:
                 ref: ${{ env.BRANCH }}
             # デフォルト環境変数
-            - run: echo "${GITHUB_ACTION}"
-            - run: echo "${GITHUB_JOB}"
+            - run: echo "GitHub Action:$GITHUB_ACTION"
+            - run: echo "GitHub job:$GITHUB_JOB"
             # 中間環境変数
-            - run: echo "The actor is "${ACTOR}" # 環境変数経由でコンテキストのプロパティを参照
+            - run: echo "The actor is $ACTOR" # 環境変数経由でコンテキストのプロパティを参照
 
 
