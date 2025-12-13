@@ -1,0 +1,45 @@
+name: Parallel jobs
+on: push
+jobs:
+    job1:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Job 1 Step
+              run: sleep 5 && echo "This is Job 1"
+    
+    job2:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Job 2 Step
+              run: sleep 5 && echo "This is Job 2"
+    
+    job3:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Job 3 Step
+              run: sleep 5 && echo "This is Job 3"
+    
+    job4:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Job 4 Step
+              id: generate
+              run: echo "result=hello" >> "${GITHUB_OUTPUT}"
+        outputs:
+            result: ${{ steps.generate.outputs.result }}
+    
+    job5:
+        runs-on: ubuntu-latest
+        needs: [job4]
+        steps:
+            - name: Job 5 Step
+              env:
+                RESULT: ${{ needs.job4.outputs.result }}
+              run: echo "This is Job 5 ${RESULT}"
+    
+    job6:
+        runs-on: ubuntu-latest
+        needs: [job2, job5]
+        steps:
+            - name: Job 6 Step
+              run: sleep 5 && echo "This is Job 6"
