@@ -1,0 +1,19 @@
+name: syntac_3
+on: push
+jobs:
+    skip-or-run:
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "Hello"
+              if: ${{ contains(github.run_id, '1') }}
+    fail:
+        runs-on: ubuntu-latest
+        steps:
+            - run: exit 1
+            - run: echo "hello"
+              if: ${{ failure() }}
+    skiped:
+        if: ${{ github.actor == 'octocat' }}
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "hello world"
