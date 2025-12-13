@@ -12,3 +12,12 @@ jobs:
               env:
                 GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             - run: echo "Comment posted"
+    token_check:
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "The GITHUB_TOKEN is set"
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                GITHUB_TOKEN_2: ${{ github.token }}
+            - run: echo "GITHUB_TOKEN $GITHUB_TOKEN"
+            - run: echo "GITHUB_TOKEN_2 $GITHUB_TOKEN_2"
