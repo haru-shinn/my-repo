@@ -12,10 +12,28 @@ jobs:
         steps:
             - run: printenv | grep 'LITERAL_'
     functions:
-        runs-on: ubuntu:latest
+        runs-on: ubuntu-latest
         steps:
             - run: printenv | grep '_FUNC'
               env:
                 CONTAINS_FUNC: ${{ contains('Hello', 'ell') }}
                 STARTS_WiTH_FUNC: ${{ startsWith('Hello', 'He') }}
                 ENDS_WITH_FUNC: ${{ endsWith('Hello', 'lo') }}
+    generate_functions:
+        runs-on: ubuntu-latest
+        steps:
+            - run: printenv | grep '_FUNC'
+              env:
+                FORMAT_FUNC: ${{ format('{0}, {1}.', 'Hi', 'word') }}
+                JOIN_FUNC: ${{ join(github.event.*.html_url, ',') }}
+            - run: echo "${CONTEXT}"
+              env:
+                CONTEXT: ${{ toJSON(github) }}
+    hash_functions:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - run: echo "${HASH}"
+              env:
+                HASH: ${{ hashFiles('.github/workflows/*.yml') }}
+
