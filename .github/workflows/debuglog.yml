@@ -5,3 +5,15 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - run: echo "::debug::this is a debug message log"
+            - run: |
+                set -x
+                date
+                hostname
+            - run: |
+                echo "::group::Show environment variables"
+                printenv
+                echo "::endgroup::"
+            - run: echo "::add-mask::${PASSWORD}"
+            - run: echo "THIS IS A PASSWORD ${PASSWORD}"
+              env:
+                PASSWORD: supersecretpassword
