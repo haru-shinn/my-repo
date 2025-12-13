@@ -25,7 +25,7 @@ jobs:
             - run: printenv | grep '_FUNC'
               env:
                 FORMAT_FUNC: ${{ format('{0}, {1}.', 'Hi', 'word') }}
-                JOIN_FUNC: ${{ join(github.event.*.html_url, ',') }}
+                # JOIN_FUNC: ${{ join(github.event.*.html_url, ',') }}
             - run: echo "${CONTEXT}"
               env:
                 CONTEXT: ${{ toJSON(github) }}
