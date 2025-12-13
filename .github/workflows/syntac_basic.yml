@@ -47,5 +47,5 @@ jobs:
         steps:
             - run: echo "シークレットの例"
             - run: echo "シークレット値:${{ secrets.PASSWORD }}"
-            - run: echo "${PASSWORD*0:1}${PASSWORD#?}" # マスクせず表示
+            - run: echo "${PASSWORD:0:1} ${PASSWORD#?}" # マスクせず表示
 
