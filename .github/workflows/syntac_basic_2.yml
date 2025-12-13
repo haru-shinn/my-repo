@@ -1,0 +1,21 @@
+name: syntac_2
+on: push
+jobs:
+    literal:
+        runs-on: ubuntu-latest
+        env:
+            LITERAL_NULL: ${{ null }}
+            LITERAL_BOOLEAN: ${{ true }}
+            LITERAL_NUMBER: ${{ 1234 }}
+            LITERAL_STRING: ${{ 'Hello' }}
+            LITERAL_OMIT_STRING: World
+        steps:
+            - run: printenv | grep 'LITERAL_'
+    functions:
+        runs-on: ubuntu:latest
+        steps:
+            - run: printenv | grep '_FUNC'
+              env:
+                CONTAINS_FUNC: ${{ contains('Hello', 'ell') }}
+                STARTS_WiTH_FUNC: ${{ startsWith('Hello', 'He') }}
+                ENDS_WITH_FUNC: ${{ endsWith('Hello', 'lo') }}
