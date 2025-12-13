@@ -1,4 +1,5 @@
 name: syntac_3
+run-name: Run by @${{ github.actor }}
 on: push
 jobs:
     skip-or-run:
@@ -17,3 +18,8 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - run: echo "hello world"
+    step_job:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Amazing Script
+              run: echo "this is an amazing script"
