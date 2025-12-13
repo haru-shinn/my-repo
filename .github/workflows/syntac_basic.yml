@@ -1,12 +1,11 @@
-name: Contexts
+name: syntac
 on: push
 jobs:
-    print:
+    context:
         runs-on: ubuntu-latest
         env:
             BRANCH: main # ジョブレベルの環境変数を定義
             ACTOR: ${{ github.actor }} # コンテキストの値を環境変数へセット
-            TESTVARIABLE: ${{ vars.USERNAME }} # リポジトリの変数をセット
         steps:
             # コンテキストの例
             - run: echo "コンテキストの例"
@@ -30,6 +29,23 @@ jobs:
             - run: echo "The actor is $ACTOR" # 環境変数経由でコンテキストのプロパティを参照
             - run: echo "The actor is ${{ github.actor }}"
             - run: echo "The actor is ${ACTOR}" # 環境変数経由でコンテキストのプロパティを参照
-            # リポジトリの変数
+    variable:
+        runs-on: ubuntu-latest
+        env:
+            TESTVARIABLE: ${{ vars.USERNAME }} # リポジトリの変数をセット
+        steps:
+            - run: |
+                echo "環境変数の例"
+                echo "ブランチ名:$BRANCH"
+                echo "GitHub Action:$GITHUB_ACTION"
+                echo "GitHub job:$GITHUB_JOB"
             - run: echo "リポジトリ変数： ${TESTVARIABLE}"
+    secrets:
+        runs-on: ubuntu-latest
+        env:
+            PASSWORD: ${{ secrets.PASSWORD }} # シークレットを環境変数へセット
+        steps:
+            - run: echo "シークレットの例"
+            - run: echo "シークレット値:${{ secrets.PASSWORD }}"
+            - run: echo "${PASSWORD*0:1}${PASSWORD#?}" # マスクせず表示
 
