@@ -6,6 +6,7 @@ jobs:
         env:
             BRANCH: main # ジョブレベルの環境変数を定義
             ACTOR: ${{ github.actor }} # コンテキストの値を環境変数へセット
+            TESTVARIABLE: ${{ vars.USERNAME }} # リポジトリの変数をセット
         steps:
             # コンテキストの例
             - run: echo "コンテキストの例"
@@ -28,6 +29,7 @@ jobs:
             # 中間環境変数
             - run: echo "The actor is $ACTOR" # 環境変数経由でコンテキストのプロパティを参照
             - run: echo "The actor is ${{ github.actor }}"
-            - run: echo "The actor is "${ACTOR}""
-
+            - run: echo "The actor is ${ACTOR}" # 環境変数経由でコンテキストのプロパティを参照
+            # リポジトリの変数
+            - run: echo "リポジトリ変数： ${TESTVARIABLE}"
 
