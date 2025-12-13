@@ -1,0 +1,16 @@
+name: syntac_4
+on: push
+jobs:
+    share:
+        runs-on: ubuntu-latest
+        steps:
+            - run: export RESULT="hello"
+            - run: echo "${RESULT}"
+    share2:
+        runs-on: ubuntu-latest
+        steps:
+            - id: source
+              run: echo "result=Hello" >> "${GITHUB_OUTPUT}"
+            - env:
+                RESULT: ${{ steps.source.outputs.result }}
+              run: echo "${RESULT}"
