@@ -14,3 +14,8 @@ jobs:
             - env:
                 RESULT: ${{ steps.source.outputs.result }}
               run: echo "${RESULT}"
+    share3:
+        runs-on: ubuntu-latest
+        steps:
+            - run: echo "RESULT=hello" >> "${GITHUB_ENV}"
+            - run: echo "${RESULT}"
