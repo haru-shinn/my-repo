@@ -24,4 +24,4 @@ jobs:
             - run: |
                 echo "## Example Title :rocket:" >> "${GITHUB_STEP_SUMMARY}"
                 echo "- first line" >> "${GITHUB_STEP_SUMMARY}"
-                echo "-second line" >> "${GITHUB_STEP_SUMMARY}"
+                echo "- second line" >> "${GITHUB_STEP_SUMMARY}"
