@@ -19,7 +19,7 @@ jobs:
             - run: echo "${{ env.BRANCH }}"
             # ジョブレベルの環境変数の例
             - run: echo "環境変数を参照する例"
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v6
               with:
                 ref: ${{ env.BRANCH }}
             # デフォルト環境変数

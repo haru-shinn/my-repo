@@ -13,7 +13,7 @@ jobs:
         runs-on: ubuntu-latest
         timeout-minutes: 5
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v6
             - run: |
                 docker run --rm -v "$(pwd):$(pwd)" -w "$(pwd)" rhysd/actionlint:latest ".github/workflows/invalid.yml"
                 
